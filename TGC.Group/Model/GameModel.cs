@@ -5,6 +5,7 @@ using TGC.Core.Collision;
 using TGC.Core.Example;
 using TGC.Core.Mathematica;
 using TGC.Examples.Collision.SphereCollision;
+using TGC.Core.Sound;
 
 namespace TGC.Group.Model {
     public class GameModel : TgcExample {
@@ -22,6 +23,8 @@ namespace TGC.Group.Model {
         // podria ser una variable local, la saque aca para debuggear
         private TGCVector3 movement;
 
+        private TgcMp3Player ambiente;
+
         private TGCVector3 VEC_GRAVEDAD = new TGCVector3(0, -0.25f, 0);
 
         public override void Init() {
@@ -33,6 +36,10 @@ namespace TGC.Group.Model {
             collisionManager.GravityEnabled = true;
             collisionManager.GravityForce = VEC_GRAVEDAD;
             collisionManager.SlideFactor = 10f;
+
+            ambiente = new TgcMp3Player();
+            ambiente.FileName = (MediaDir + "\\NsanityBeach.mp3");
+            ambiente.play(true);
         }
 
         public override void Update() {
