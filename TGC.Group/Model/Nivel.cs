@@ -69,18 +69,18 @@ namespace TGC.Group.Model {
             pEstaticas.Add(new Plataforma(new TGCVector3(0, -165, 6090), new TGCVector3(900, 70, 20), desiertoTexture));
 
             // precipicios del desierto
-            piso = new TgcPlane(new TGCVector3(-150, -380, 3300), new TGCVector3(500, 0, 200), TgcPlane.Orientations.XZplane, precipicioTexture);
+            piso = new TgcPlane(new TGCVector3(-150, -500, 3300), new TGCVector3(500, 0, 200), TgcPlane.Orientations.XZplane, precipicioTexture);
             pMuerte.Add(piso); // precipicio ancho
-            piso = new TgcPlane(new TGCVector3(-400, -380, 4100), new TGCVector3(250, 0, 800), TgcPlane.Orientations.XZplane, precipicioTexture);
+            piso = new TgcPlane(new TGCVector3(-400, -500, 4100), new TGCVector3(250, 0, 800), TgcPlane.Orientations.XZplane, precipicioTexture);
             pMuerte.Add(piso); // precipicio largo
-            pEstaticas.Add(new Plataforma(new TGCVector3(100, -280, 3300), new TGCVector3(500, 200, 2), precipicioTexture)); // paredes precipicio ancho
-            pEstaticas.Add(new Plataforma(new TGCVector3(350, -280, 3400), new TGCVector3(2, 200, 200), precipicioTexture));
-            pEstaticas.Add(new Plataforma(new TGCVector3(-150, -280, 3400), new TGCVector3(2, 200, 200), precipicioTexture));
-            pEstaticas.Add(new Plataforma(new TGCVector3(100, -280, 3500), new TGCVector3(500, 200, 2), precipicioTexture));
-            pEstaticas.Add(new Plataforma(new TGCVector3(-275, -280, 4100), new TGCVector3(250, 200, 2), precipicioTexture)); // paredes precipicio largo
-            pEstaticas.Add(new Plataforma(new TGCVector3(-150, -280, 4500), new TGCVector3(2, 200, 800), precipicioTexture));
-            pEstaticas.Add(new Plataforma(new TGCVector3(-400, -280, 4500), new TGCVector3(2, 200, 800), precipicioTexture));
-            pEstaticas.Add(new Plataforma(new TGCVector3(-275, -280, 4900), new TGCVector3(250, 200, 2), precipicioTexture));
+            pEstaticas.Add(new Plataforma(new TGCVector3(100, -340, 3300), new TGCVector3(500, 320, 2), precipicioTexture)); // paredes precipicio ancho
+            pEstaticas.Add(new Plataforma(new TGCVector3(350, -340, 3400), new TGCVector3(2, 320, 200), precipicioTexture));
+            pEstaticas.Add(new Plataforma(new TGCVector3(-150, -340, 3400), new TGCVector3(2, 320, 200), precipicioTexture));
+            pEstaticas.Add(new Plataforma(new TGCVector3(100, -340, 3500), new TGCVector3(500, 320, 2), precipicioTexture));
+            pEstaticas.Add(new Plataforma(new TGCVector3(-275, -340, 4100), new TGCVector3(250, 320, 2), precipicioTexture)); // paredes precipicio largo
+            pEstaticas.Add(new Plataforma(new TGCVector3(-150, -340, 4500), new TGCVector3(2, 320, 800), precipicioTexture));
+            pEstaticas.Add(new Plataforma(new TGCVector3(-400, -340, 4500), new TGCVector3(2, 320, 800), precipicioTexture));
+            pEstaticas.Add(new Plataforma(new TGCVector3(-275, -340, 4900), new TGCVector3(250, 320, 2), precipicioTexture));
 
             // escalinatas de piedra, separan jungla de desierto
             var tamanioEscalinata = new TGCVector3(900, 60, 200);
@@ -100,18 +100,18 @@ namespace TGC.Group.Model {
             pEstaticas.Add(new Plataforma(new TGCVector3(1975, 200, -1900), new TGCVector3(50, 400, 2200), hieloTexture)); // izquierda
 
             // precipicio del tronco
-            piso = new TgcPlane(new TGCVector3(2000, -200, 800), new TGCVector3(1000, 0, 1200), TgcPlane.Orientations.XZplane, precipicioTexture);
-            pMuerte.Add(piso); //TODO: Configurar el deathplane, deberia ir ahi?
-            pEstaticas.Add(new Plataforma(new TGCVector3(2500, -100, 800), new TGCVector3(1000, 200, 2), precipicioTexture)); // fondo
-            pEstaticas.Add(new Plataforma(new TGCVector3(2000, -100, 1400), new TGCVector3(2, 200, 1200), precipicioTexture)); // derecha
-            pEstaticas.Add(new Plataforma(new TGCVector3(3000, -100, 1400), new TGCVector3(2, 200, 1200), precipicioTexture)); // izquierda
-            pEstaticas.Add(new Plataforma(new TGCVector3(2500, -100, 2000), new TGCVector3(1000, 200, 2), precipicioTexture)); // frontal
+            piso = new TgcPlane(new TGCVector3(2000, -500, 800), new TGCVector3(1000, 0, 1200), TgcPlane.Orientations.XZplane, precipicioTexture);
+            pMuerte.Add(piso); 
+            pEstaticas.Add(new Plataforma(new TGCVector3(2500, -250, 800), new TGCVector3(1000, 500, 2), precipicioTexture)); // fondo
+            pEstaticas.Add(new Plataforma(new TGCVector3(2000, -250, 1400), new TGCVector3(2, 500, 1200), precipicioTexture)); // derecha
+            pEstaticas.Add(new Plataforma(new TGCVector3(3000, -250, 1400), new TGCVector3(2, 500, 1200), precipicioTexture)); // izquierda
+            pEstaticas.Add(new Plataforma(new TGCVector3(2500, -250, 2000), new TGCVector3(1000, 14000, 2), precipicioTexture)); // frontal
 
-            pDesplazan.Add(new PlataformaDesplazante(new TGCVector3(0, -50, 5000), new TGCVector3(200, 50, 200), cajaTexture, new TGCVector3(-200, -50, 5000), new TGCVector3(2f, 0, 0)));
-            pDesplazan.Add(new PlataformaDesplazante(new TGCVector3(2075, -60, 1400), new TGCVector3(150, 50, 80), maderaTexture, new TGCVector3(2925, -60, 1400), new TGCVector3(2f, 0, 0)));
+            pDesplazan.Add(new PlataformaDesplazante(new TGCVector3(0, -50, 5000), new TGCVector3(200, 50, 200), cajaTexture, new TGCVector3(-200, -50, 5000), new TGCVector3(0.2f, 0, 0)));
+            pDesplazan.Add(new PlataformaDesplazante(new TGCVector3(2075, -60, 1400), new TGCVector3(150, 50, 80), maderaTexture, new TGCVector3(2925, -60, 1400), new TGCVector3(0.2f, 0, 0)));
 
             pRotantes.Add(new PlataformaRotante(new TGCVector3(0, 100, 300), new TGCVector3(200, 50, 200), cajaTexture, FastMath.PI * 100));
-            pAscensor.Add(new PlataformaAscensor(new TGCVector3(0, -50, 5000), new TGCVector3(200, 50, 200), cajaTexture, 200, 1));
+            pAscensor.Add(new PlataformaAscensor(new TGCVector3(0, -50, 5000), new TGCVector3(200, 50, 200), cajaTexture, 200, 0.1f));
         }
 
         public void update(float deltaTime) {

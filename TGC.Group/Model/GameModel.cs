@@ -66,17 +66,9 @@ namespace TGC.Group.Model {
             // muevo plataformas
             nivel.update(ElapsedTime);
 
-
             // manejo de muerte
-            // todo: poner en otra funcion
-            foreach (var box in nivel.getDeathPlanes()) {
-                if (TgcCollisionUtils.testSphereAABB(personaje.getBoundingSphere(), box)) {
-                    personaje.volverAlOrigen();
-                }
-            }
-
-            if (personaje.getPosition().Y < -1500) personaje.volverAlOrigen();
-
+            checkearMuerte();
+            
             // tecla de reset
             if (Input.keyPressed(Key.F9)) personaje.volverAlOrigen();
 
@@ -162,6 +154,19 @@ namespace TGC.Group.Model {
 
                 caja.applyGravity();
             }
+        }
+
+        private void checkearMuerte()
+        {
+            foreach (var box in nivel.getDeathPlanes())
+            {
+                if (TgcCollisionUtils.testSphereAABB(personaje.getBoundingSphere(), box))
+                {
+                    personaje.volverAlOrigen();
+                }
+            }
+
+            if (personaje.getPosition().Y < -800) personaje.volverAlOrigen();
         }
     }
 }
