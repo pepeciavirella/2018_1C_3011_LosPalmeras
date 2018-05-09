@@ -1,6 +1,7 @@
 using Microsoft.DirectX.DirectInput;
 using System;
 using System.Drawing;
+using TGC.Core.BoundingVolumes;
 using TGC.Core.Collision;
 using TGC.Core.Example;
 using TGC.Core.Mathematica;
@@ -48,27 +49,14 @@ namespace TGC.Group.Model {
             // calculo nueva velocidad
             personaje.update(ElapsedTime, Input);
 
+            // checkeo si empujo alguna caja
             checkearEmpujeCajas();
+
+            // gravito las cajas
             aplicarGravedadCajas();
 
             // checkeo sobre que estoy parado
-            // TODO: hacer funcion aparte
-            foreach (var box in nivel.getPisos()) {
-                if (TgcCollisionUtils.testSphereAABB(personaje.getPies(), box)) {
-                    if (nivel.esPisoDesplazante(box)) {
-                        personaje.addVelocity(nivel.getPlataformaDesplazante(box).getVelocity());
-                    } else if (nivel.esPisoRotante(box)) {
-                        var plataformaRotante = nivel.getPlataformaRotante(box);
-                        personaje.addVelocity(plataformaRotante.getVelAsVector(personaje.getPosition()) * ElapsedTime);
-                        personaje.setRotation(plataformaRotante.getAngle());
-                    } else if (nivel.esPisoAscensor(box)) {
-                        personaje.addVelocity(nivel.getPlataformaAscensor(box).getVel());
-                    }
-
-                    personaje.aterrizar();
-                    personaje.setPatinando(nivel.esPisoResbaladizo(box));
-                }
-            }
+            checkearDesplazamientoPorPlataformas();           
 
             // muevo plataformas
             nivel.update(ElapsedTime);
@@ -117,11 +105,12 @@ namespace TGC.Group.Model {
             nivel.dispose();
         }
 
-        private void checkearEmpujeCajas() {
+        private void checkearEmpujeCajas() { // ARREGLAR :(
+
             foreach (var caja in nivel.getCajas()) {
+
                 if (TgcCollisionUtils.testSphereAABB(personaje.getBoundingSphere(), caja.getCuerpo())) {
 
-                    // obtengo dirección para mover la caja
                     var distanciaPersonajeCaja = caja.getCuerpo().calculateBoxCenter() - personaje.getBoundingSphere().Center;
                     var cajaMovementDeseado = TGCVector3.Empty;
 
@@ -139,7 +128,37 @@ namespace TGC.Group.Model {
                         }
                     }
 
-                    caja.move(cajaMovementDeseado); //TEMP
+                    caja.move(cajaMovementDeseado); 
+                }
+            }
+
+        }
+
+        private void checkearDesplazamientoPorPlataformas()
+        {
+            foreach (var box in nivel.getPisos()) {
+
+                if (TgcCollisionUtils.testSphereAABB(personaje.getPies(), box))
+                {
+
+                    if (nivel.esPisoDesplazante(box))
+                    {
+                        personaje.addVelocity(nivel.getPlataformaDesplazante(box).getVelocity());
+                    }
+                    else if (nivel.esPisoRotante(box))
+                    {
+                        var plataformaRotante = nivel.getPlataformaRotante(box);
+                        personaje.addVelocity(plataformaRotante.getVelAsVector(personaje.getPosition()) * ElapsedTime);
+                        personaje.setRotation(plataformaRotante.getAngle());
+                    }
+                    else if (nivel.esPisoAscensor(box))
+                    {
+                        personaje.addVelocity(nivel.getPlataformaAscensor(box).getVel());
+                    }
+
+                    personaje.aterrizar();
+                    personaje.setPatinando(nivel.esPisoResbaladizo(box));
+
                 }
             }
         }

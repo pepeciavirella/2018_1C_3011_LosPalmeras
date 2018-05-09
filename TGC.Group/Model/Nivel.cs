@@ -54,6 +54,7 @@ namespace TGC.Group.Model {
             var piedraTexture = TgcTexture.createTexture(D3DDevice.Instance.Device, mediaDir + "piedra.png");
             var precipicioTexture = TgcTexture.createTexture(D3DDevice.Instance.Device, mediaDir + "precipicio.jpg");
             var maderaTexture = TgcTexture.createTexture(D3DDevice.Instance.Device, mediaDir + "tronco.jpg");
+            var endingTexture = TgcTexture.createTexture(D3DDevice.Instance.Device, mediaDir + "damero.png");
 
             // Cargo objetos decorativos
             var escenaCalavera1 = loader.loadSceneFromFile(mediaDir + "\\Decorativos\\Calabera\\Calabera-TgcScene.xml");
@@ -143,6 +144,13 @@ namespace TGC.Group.Model {
             pEstaticas.Add(new Plataforma(new TGCVector3(3000, -250, 1400), new TGCVector3(2, 500, 1200), precipicioTexture)); // izquierda
             pEstaticas.Add(new Plataforma(new TGCVector3(2500, -250, 2000), new TGCVector3(1000, 500, 2), precipicioTexture)); // frontal
 
+            // Sector post-precipicio del tronco
+            piso = new TgcPlane(new TGCVector3(3000, 0, 800), new TGCVector3(1200, 0, 1200), TgcPlane.Orientations.XZplane, endingTexture);
+            pisosNormales.Add(piso);
+            pEstaticas.Add(new Plataforma(new TGCVector3(4190, 20, 1400), new TGCVector3(20, 40, 1200), paredJunglaTexture));
+            pEstaticas.Add(new Plataforma(new TGCVector3(3600, 20, 1990), new TGCVector3(1200, 40, 20), paredJunglaTexture));
+            pEstaticas.Add(new Plataforma(new TGCVector3(3600, 20, 790), new TGCVector3(1200, 40, 20), paredJunglaTexture));
+
             // Cajas movibles del escenario
             cajas.Add(new Caja(mediaDir, new TGCVector3(-250, 40, -1000))); 
             cajas.Add(new Caja(mediaDir, new TGCVector3(250, 40, 250)));   
@@ -154,13 +162,14 @@ namespace TGC.Group.Model {
             pDesplazan.Add(new PlataformaDesplazante(new TGCVector3(2075, -60, 1400), new TGCVector3(150, 50, 80), maderaTexture, new TGCVector3(2925, -60, 1400), new TGCVector3(0.2f, 0, 0)));
 
             // Plataforma rotante
-            pRotantes.Add(new PlataformaRotante(new TGCVector3(0, 70, 300), new TGCVector3(100, 50, 100), cajaTexture, FastMath.PI * 100));
+            pRotantes.Add(new PlataformaRotante(new TGCVector3(0, 70, 300), new TGCVector3(100, 50, 100), cajaTexture, FastMath.PI * 200));
             
             // Plataforma ascensor en Y
             pAscensor.Add(new PlataformaAscensor(new TGCVector3(0, -140, 2800), new TGCVector3(200, 50, 200), cajaTexture, 200, 0.1f));
         }
 
         public void update(float deltaTime) {
+
             foreach (var p in pDesplazan) {
                 p.update(deltaTime);
             }
@@ -172,9 +181,11 @@ namespace TGC.Group.Model {
             foreach (var p in pAscensor) {
                 p.update(deltaTime);
             }
+
         }
 
         public void render() {
+
             foreach (var piso in pisosNormales) {
                 piso.Render();
             }
@@ -215,6 +226,7 @@ namespace TGC.Group.Model {
         }
 
         public void dispose() {
+
             foreach (var piso in pisosNormales) {
                 piso.Dispose();
             }
@@ -247,6 +259,11 @@ namespace TGC.Group.Model {
             foreach (var p in pAscensor) {
                 p.dispose();
             }
+
+            foreach (var decorativo in decorativos) {
+                decorativo.Dispose();
+            }
+
         }
 
         public void cargarDecorativo (TgcMesh unDecorativo, TgcScene unaEscena, TGCVector3 posicion, TGCVector3 escala, float rotacion)
@@ -268,6 +285,7 @@ namespace TGC.Group.Model {
             list.AddRange(pDesplazan.Select(desplazante => desplazante.getAABB()).ToArray());
             list.AddRange(pRotantes.Select(rotante => rotante.getAABB()).ToArray());
             list.AddRange(pAscensor.Select(ascensor => ascensor.getAABB()).ToArray());
+            list.AddRange(aabbDeDecorativos);
             return list;
         }
 

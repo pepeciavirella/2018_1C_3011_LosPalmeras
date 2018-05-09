@@ -266,6 +266,7 @@
     <Content Include="Media\Ciudad\Textures\Traffic Light.jpg" />
     <Content Include="Media\Ciudad\Textures\White Wall.JPG" />
     <Content Include="Media\Ciudad\Textures\Yellow Painted.jpg" />
+    <Content Include="Media\damero.png" />
     <Content Include="Media\Decorativos\ArbolBananas\ArbolBananas-TgcScene.xml" />
     <Content Include="Media\Decorativos\ArbolBananas\preview.jpg" />
     <Content Include="Media\Decorativos\ArbolBananas\Textures\banana.jpg" />
@@ -307,6 +308,7 @@
     <Content Include="Media\Jungla\Textures\SassiWall1.jpg" />
     <Content Include="Media\Jungla\Textures\WoodTexture.jpg" />
     <Content Include="Media\LogoTGC-TgcScene.xml" />
+    <Content Include="Media\NsanityBeach.mp3" />
     <Content Include="Media\paredJungla.jpg" />
     <Content Include="Media\piedra.png" />
     <Content Include="Media\piso.jpg" />

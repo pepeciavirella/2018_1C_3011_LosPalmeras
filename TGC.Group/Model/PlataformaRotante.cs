@@ -2,8 +2,9 @@
 using TGC.Core.Textures;
 
 namespace TGC.Group.Model {
-    // TODO: podría ser un cilindro en vez de un rectángulo
+    
     class PlataformaRotante : Plataforma {
+
         private float vel;
 
         public PlataformaRotante(TGCVector3 pos, TGCVector3 size, TgcTexture textura, float velAng) 
